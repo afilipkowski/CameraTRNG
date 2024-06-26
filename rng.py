@@ -3,18 +3,12 @@ import imageio.v2 as imageio
 import math
 import matplotlib.pyplot as plt
 
-def calculate_entropy(data):
-    probabilities = {x: data.count(x) / len(data) for x in set(data)}
-    entropy = -sum(p * math.log2(p) for p in probabilities.values())
-    return entropy
 
 bitsNeeded      = int(input("Liczba bajtow do wygenerowania: "))*8
 lastFrame = 0
 lastBit = 0
 bitsGenerated   = 0
 generatedArray = []
-dataArray = []
-dataArray = np.array(dataArray)
 matrixDimension = math.floor(math.sqrt(bitsNeeded)) 
 squareArray     = np.zeros([matrixDimension, matrixDimension], dtype=np.uint8) 
 bitsInMatrix = matrixDimension*matrixDimension
@@ -76,15 +70,11 @@ for i in squareArray:
         integer = 0
         bitCount = 0
 
-entropy2 = calculate_entropy(generatedArray)
-
 weights = np.ones_like(generatedArray) / len(generatedArray)
-plt.hist(dataArray, bins=256)
-plt.show()
 plt.hist(generatedArray, bins=256, weights=weights)
 plt.show()
-print("Bytes generated: " + str(bitsGenerated//8))
-print("Entropy: " + str(entropy2))
+print("Bytes generated: " + str(bitsGenerated))
+print(generatedArray)
 
     
     
